@@ -1,0 +1,2 @@
+opentok>=2.2
+Flask
