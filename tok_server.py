@@ -16,6 +16,7 @@ def start():
     session_id = session.session_id
     token = opentok.generate_token(session_id)
     token = session.generate_token(role=Roles.publisher)
+    print session_id
     return render_template('index.html', api_key=key, session_id=session_id, token=token)
 
 if __name__ == "__main__":
