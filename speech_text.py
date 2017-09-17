@@ -11,15 +11,28 @@ def connect_speechtext():
 def get_text(speech_to_text):
     with open('audio-file.flac', 'rb') as audio_file:
         text_json = json.dumps(speech_to_text.recognize(audio_file, content_type='audio/flac', timestamps=True, word_confidence=True), indent=2)
-        print text_json['results'][0]['alternatives'][0]['transcript']
+        return json.loads(text_json)["results"][0]["alternatives"][0]["transcript"]
 
-def connect_tone():
+def connect_tone(some_text):
     tone_analyzer = ToneAnalyzerV3(
             username = "90482d2a-a5b1-48d8-ad19-fbf49b93c87d",
-            password = "ssDXTXRX7CF4")
+            password = "ssDXTXRX7CF4",
+            version='2016-05-19')
+    return json.dumps(tone_analyzer.tone(text=some_text), indent=2)
+
+def top_tones(tone_json):
+    """ Returns top tones from tone analysis"""
+    toptones = []
+    for tone_cat in tone_json['document_tone']['tone_categories']:
+        tone_result = tone_cat['tones'][0]
+        toptones.append([tone_result['tone_name'], tone_result['score']])
+    print toptones
+    return toptones
 
 def main():
     speechtext = connect_speechtext()
-    get_text(speechtext)
+    speechtext = get_text(speechtext)
+    tone_json = json.loads(connect_tone(speechtext))
+    top_tones(tone_json)
 
 main()
