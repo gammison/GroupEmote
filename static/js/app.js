@@ -1,7 +1,14 @@
 //var sessionId = "2_MX40NTk2MTE1Mn5-MTUwNTU5NTI1MzE1Mn5ob0FKMzd3MGlERXVwNEVPOGtRNkVpUHF-fg";
 //var token = "T1==cGFydG5lcl9pZD00NTk2MTE1MiZzaWc9OTk3OWFmMzAwMDcxYTkyMWMwNDI4NDg3YWNjMDgzZTNjYzY0NjA5MDpzZXNzaW9uX2lkPTJfTVg0ME5UazJNVEUxTW41LU1UVXdOVFU1TlRJMU16RTFNbjVvYjBGS016ZDNNR2xFUlhWd05FVlBPR3RSTmtWcFVIRi1mZyZjcmVhdGVfdGltZT0xNTA1NTk1MjY4Jm5vbmNlPTAuMDk3NDU2NzgwMzczNDgwOTMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwNTU5ODg2OCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
+var apiKey;
+var sessionId;
+var token;
+
 var SERVER_BASE_URL = 'https://group-emote.herokuapp.com';
+
+/*var SERVER_BASE_URL = 'https://group-emote.herokuapp.com';
+>>>>>>> f457bf44a92d46e567fc818b292e97e4fcdda267:static/js/app.js
 
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
         return res.json()
@@ -11,6 +18,7 @@ fetch(SERVER_BASE_URL + '/session').then(function(res) {
         token = res.token;
         initializeSession();
 }).catch(handleError);
+*/
 // (optional) add server code here
 initializeSession();
 // Handling all of our errors here by alerting them
