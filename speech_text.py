@@ -1,5 +1,6 @@
 import json
 from watson_developer_cloud import SpeechToTextV1, ToneAnalyzerV3
+from pydub import AudioSegment
 
 def connect_speechtext():
     speech_to_text = SpeechToTextV1(username = "30b45935-db04-4ba5-9e65-095e86067b13", password = 'ke6p8Dae58R5', x_watson_learning_opt_out=False)
@@ -8,28 +9,14 @@ def connect_speechtext():
     # print(json.dumps(speech_to_text.get_model('en-US_BroadbandModel'), indent=2))
     return speech_to_text
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 def get_text(file_name, con_type, speech_to_text):
     with open(file_name, 'rb') as audio_file:
         text_json = json.dumps(speech_to_text.recognize(audio_file, content_type=con_type, timestamps=True, word_confidence=True), indent=2)
-=======
-def get_text(speech_to_text):
-    with open('audio-file.flac', 'rb') as audio_file:
-        text_json = json.dumps(speech_to_text.recognize(audio_file, content_type='audio/flac', timestamps=True, word_confidence=True), indent=2)
->>>>>>> parent of 07dcc5d... finalizing speech to tone analysis
         return json.loads(text_json)["results"][0]["alternatives"][0]["transcript"]
-=======
-def get_text(speech_to_text):
-    with open('audio-file.flac', 'rb') as audio_file:
-        text_json = json.dumps(speech_to_text.recognize(audio_file, content_type='audio/flac', timestamps=True, word_confidence=True), indent=2)
-        print text_json['results'][0]['alternatives'][0]['transcript']
->>>>>>> parent of 5216071... finished test speech to text to tone
 
-def connect_tone():
+def connect_tone(some_text):
     tone_analyzer = ToneAnalyzerV3(
             username = "90482d2a-a5b1-48d8-ad19-fbf49b93c87d",
-<<<<<<< HEAD
             password = "ssDXTXRX7CF4",
             version='2016-05-19')
     return json.dumps(tone_analyzer.tone(text=some_text), indent=2)
@@ -40,13 +27,8 @@ def top_tones(tone_json):
     for tone_cat in tone_json['document_tone']['tone_categories']:
         tone_result = tone_cat['tones'][0]
         toptones.append([tone_result['tone_name'], tone_result['score']])
-    print toptones
     return toptones
-=======
-            password = "ssDXTXRX7CF4")
->>>>>>> parent of 5216071... finished test speech to text to tone
 
-<<<<<<< HEAD
 def segment_audio(path, type, interval_beg, interval_end):
     """Split an audio file based on inteval of seconds"""
     if type is "mp3":
@@ -66,24 +48,13 @@ def segment_audio(path, type, interval_beg, interval_end):
 
 
 def main():
-<<<<<<< HEAD
     connection = connect_speechtext()
     for i in range(8):
-        audio_seg = segment_audio('conwaytrump.mp3', "mp3", (i)*8, (i+1)*8)
+        audio_seg = segment_audio('conwaytrump.mp3', "mp3", i*8, (i+1)*8)
         speechtext = get_text('split.mp3', 'audio/mp3', connection)
-        print speechtext
         tone_json = json.loads(connect_tone(speechtext))
-        print top_tones(tone_json)
-=======
-    speechtext = connect_speechtext()
-    get_text(speechtext)
->>>>>>> parent of 5216071... finished test speech to text to tone
-=======
-def main():
-    speechtext = connect_speechtext()
-    speechtext = get_text(speechtext)
-    tone_json = json.loads(connect_tone(speechtext))
-    top_tones(tone_json)
->>>>>>> parent of 07dcc5d... finalizing speech to tone analysis
+        tones = top_tones(tone_json)
+        for array in tones:
+            print(array[0])
 
 main()
