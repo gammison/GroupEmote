@@ -1,6 +1,10 @@
 //var sessionId = "2_MX40NTk2MTE1Mn5-MTUwNTU5NTI1MzE1Mn5ob0FKMzd3MGlERXVwNEVPOGtRNkVpUHF-fg";
 //var token = "T1==cGFydG5lcl9pZD00NTk2MTE1MiZzaWc9OTk3OWFmMzAwMDcxYTkyMWMwNDI4NDg3YWNjMDgzZTNjYzY0NjA5MDpzZXNzaW9uX2lkPTJfTVg0ME5UazJNVEUxTW41LU1UVXdOVFU1TlRJMU16RTFNbjVvYjBGS016ZDNNR2xFUlhWd05FVlBPR3RSTmtWcFVIRi1mZyZjcmVhdGVfdGltZT0xNTA1NTk1MjY4Jm5vbmNlPTAuMDk3NDU2NzgwMzczNDgwOTMmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTUwNTU5ODg2OCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
+var apiKey;
+var sessionId;
+var token;
+
 var SERVER_BASE_URL = 'https://group-emote.herokuapp.com';
 
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
