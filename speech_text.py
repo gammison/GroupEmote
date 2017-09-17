@@ -7,7 +7,7 @@ def connect_speechtext():
 
     # print(json.dumps(speech_to_text.models(), indent=2))
     # print(json.dumps(speech_to_text.get_model('en-US_BroadbandModel'), indent=2))
-    return speech_to_text 
+    return speech_to_text
 
 def get_text(file_name, con_type, speech_to_text):
     with open(file_name, 'rb') as audio_file:
@@ -45,7 +45,7 @@ def segment_audio(path, type, interval_beg, interval_end):
         audio_segment = audio[interval_beg:interval_end]
         file_write = audio_segment.export("split.mp3", format="mp3")
         return audio_segment
-    
+
 
 def main():
     connection = connect_speechtext()
