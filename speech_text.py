@@ -1,5 +1,4 @@
 import json
-from pydub import AudioSegment
 from watson_developer_cloud import SpeechToTextV1, ToneAnalyzerV3
 
 def connect_speechtext():
@@ -10,9 +9,15 @@ def connect_speechtext():
     return speech_to_text
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 def get_text(file_name, con_type, speech_to_text):
     with open(file_name, 'rb') as audio_file:
         text_json = json.dumps(speech_to_text.recognize(audio_file, content_type=con_type, timestamps=True, word_confidence=True), indent=2)
+=======
+def get_text(speech_to_text):
+    with open('audio-file.flac', 'rb') as audio_file:
+        text_json = json.dumps(speech_to_text.recognize(audio_file, content_type='audio/flac', timestamps=True, word_confidence=True), indent=2)
+>>>>>>> parent of 07dcc5d... finalizing speech to tone analysis
         return json.loads(text_json)["results"][0]["alternatives"][0]["transcript"]
 =======
 def get_text(speech_to_text):
@@ -33,13 +38,15 @@ def top_tones(tone_json):
     """ Returns top tones from tone analysis"""
     toptones = []
     for tone_cat in tone_json['document_tone']['tone_categories']:
-        tone_results = sorted(tone_cat['tones'], key=lambda t: t['score'], reverse=True)
-        toptones.append([tone_results[0]['tone_name'], tone_results[0]['score']])
+        tone_result = tone_cat['tones'][0]
+        toptones.append([tone_result['tone_name'], tone_result['score']])
+    print toptones
     return toptones
 =======
             password = "ssDXTXRX7CF4")
 >>>>>>> parent of 5216071... finished test speech to text to tone
 
+<<<<<<< HEAD
 def segment_audio(path, type, interval_beg, interval_end):
     """Split an audio file based on inteval of seconds"""
     if type is "mp3":
@@ -71,5 +78,12 @@ def main():
     speechtext = connect_speechtext()
     get_text(speechtext)
 >>>>>>> parent of 5216071... finished test speech to text to tone
+=======
+def main():
+    speechtext = connect_speechtext()
+    speechtext = get_text(speechtext)
+    tone_json = json.loads(connect_tone(speechtext))
+    top_tones(tone_json)
+>>>>>>> parent of 07dcc5d... finalizing speech to tone analysis
 
 main()

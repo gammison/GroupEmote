@@ -5,7 +5,11 @@ var apiKey;
 var sessionId;
 var token;
 
+var SERVER_BASE_URL = 'https://group-emote.herokuapp.com';
+
 /*var SERVER_BASE_URL = 'https://group-emote.herokuapp.com';
+>>>>>>> f457bf44a92d46e567fc818b292e97e4fcdda267:static/js/app.js
+
 fetch(SERVER_BASE_URL + '/session').then(function(res) {
         return res.json()
 }).then(function(res) {
@@ -55,8 +59,3 @@ function initializeSession() {
     }
   });
 }
-
-// Custom audio driver
-CustomAudioDevice audiodev = new CustomAudioDevice(MainActivity.this);
-OTAudioDeviceManager.setAudioDevice(audiodev);
-session = new initializeSession 
